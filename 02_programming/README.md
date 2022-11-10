@@ -64,3 +64,45 @@ while expr:
 else:
     <additional_statement(s)>
 ```
+
+简单与剧组:
+只有一条可以写同一行:类似if
+`while (flag): print('welcome!')`
+
+#### for 
+```python
+for <varaible> in <sequence>:
+    <statements>
+else:
+    <statements>
+```
+
+#### range()函数
+- range(stop)
+- range(start, stop)
+- range(start,stop, step)
+_ 
+
+```python
+>>>a = ['Google', 'Baidu', 'Runoob', 'Taobao', 'QQ']
+>>> for i in range(len(a)):
+...     print(i, a[i])
+```
+
+#### pass
+pass是空语句，保持结构的完整性:
+```python
+while True:
+    pass
+```
+
+## 迭代器与生成器
+迭代器的两个基本方法: `iter()`, `next()`
+
+```python
+list=[1,2,3,4]
+it = iter(list)    # 创建迭代器对象
+for x in it:
+    print (x, end=" ")
+
+```
