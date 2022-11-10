@@ -37,7 +37,11 @@ print (str + "TEST") # 连接字符串
 - 单引号与双引号 具有同样的效果
 - `*` 多次输出, `+` 连接
 
+## 序列
+- 6个内置的序列类型，最常见的是列表和元组.
+
 ## List
+- 序列是python中最基本的数据结构
 
 ### 特点
 - 方括号之间`[]`逗号分隔的元素列表.
@@ -83,8 +87,13 @@ if __name__ == "__main__":
     print(rw)
 ```
 
-### 方法:
-
+### 操作/方法:
+- 截取
+- append()
+- del 
+- 操作符: `+*`
+- 函数: `len(list), max(list), min(list), list(seq)`
+- 方法: `lsit.append(obj), list.count(obj), list.extend(seq), list.index(obj), list.insert(index, obj)`
 
 ## tuple
 ### 特点
@@ -103,6 +112,10 @@ print (tuple[1:3])        # 输出从第二个元素开始到第三个元素
 print (tuple[2:])         # 输出从第三个元素开始的所有元素
 print (tinytuple * 2)     # 输出两次元组
 print (tuple + tinytuple) # 连接元组
+
+# 元组中只包含一个元素时要注意:
+
+
 ```
 
 ### set
@@ -278,4 +291,17 @@ in, not in用来测试是否在制定序列中.
 ### 三角函数
 
 ### 数学常量
+
+## String
+### 常识
+- 使用[]来截取字符串.
+- 字符串运算符: `+*[] in not in r/R %`
+- 字符串格式化: %
+- 辅助格式化: `str.format()`, 格式化符号:`*-, +, <sp>, 0, m.n`
+- 三个引号: 多行字符串. 常用于html, SQL块
+- python 3.6中引入了f字符串，类似于JS中的字符串模板.
+
+### 内建函数
+- 
+
 
