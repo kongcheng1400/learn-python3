@@ -24,3 +24,43 @@ while b < 1000:
 ```
 
 ### if
+```python
+if condition_1:
+    statement_block_1
+elif condition_2:
+    statement_block_2
+else:
+    statement_block_3
+
+```
+
+### match...case
+```python
+match subject:
+    case <pattern_1>:
+        <action_1>
+    #case 可以使用隔开: |
+    case <pattern_2>:
+        <action_2>
+    case <pattern_3>:
+        <action_3>
+    case _:
+        <action_wildcard>
+```
+
+### loop
+
+#### while
+
+```python
+while condition:
+    statement(s)...
+```
+
+or `while else`
+```python
+while expr:
+    <statement(s)>
+else:
+    <additional_statement(s)>
+```
