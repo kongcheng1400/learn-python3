@@ -83,4 +83,54 @@ Google 和 Runoob
 >>> print('{1} 和 {0}'.format('Google', 'Runoob'))
 Runoob 和 Google
 
+# 使用关键字参数
+print('{name}网址： {site}'.format(name='菜鸟教程', site='www.runoob.com'))
+菜鸟教程网址： www.runoob.com
+
+# !a，!s, !r
+>>> import math
+>>> print('常量 PI 的值近似为： {}。'.format(math.pi))
+常量 PI 的值近似为： 3.141592653589793。
+>>> print('常量 PI 的值近似为： {!r}。'.format(math.pi))
+常量 PI 的值近似为： 3.141592653589793。
+
+# 可选项:和格式标志符:更好的格式化
+>>> print('常量 PI 的值近似为 {0:.3f}。'.format(math.pi))
+常量 PI 的值近似为 3.142。
+
+# :后跟着一个数字，则是最少宽度，用于美化表格
+>>> table = {'Google': 1, 'Runoob': 2, 'Taobao': 3}
+>>> for name, number in table.items():
+...     print('{0:10} ==> {1:10d}'.format(name, number))
+...
+Google     ==>          1
+Runoob     ==>          2
+Taobao     ==>          3
 ```
+
+### 使用%格式化.
+
+```python
+>>> import math
+>>> print('常量 PI 的值近似为：%5.3f。' % math.pi)
+常量 PI 的值近似为：3.142。
+```
+
+## 文件读写
+`open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
+`
+```
+# 打开一个文件
+f = open("/tmp/foo.txt", "w")
+
+f.write( "Python 是一个非常好的语言。\n是的，的确非常好!!\n" )
+
+# 关闭打开的文件
+f.close()
+
+```
+
+### 文件对象
+- `f.read()`
+
+## os
