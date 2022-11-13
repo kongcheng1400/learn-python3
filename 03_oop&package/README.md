@@ -1,4 +1,44 @@
-#
+## oop
+
+- __init__(): 构造方法.
+- self代表类的实例:
+- 类方法与普通的函数的区别：它们必须有一个额外的第一个参数名称，按照惯例是self
+- __private_attrs:两个下划线开头，声明该属性为私有.
+- __private_method:私有方法.
+
+
+```python
+class Complex:
+    def __init__(self, realpart, imagpart):
+        self.r = realpart
+        self.i = imagpart
+x = Complex(3.0, -4.5)
+print(x.r, x.i)   # 输出结果：3.0 -4.5
+```
+
+类的方法:
+```python
+#类定义
+class people:
+    #定义基本属性
+    name = ''
+    age = 0
+    #定义私有属性,私有属性在类外部无法直接进行访问
+    __weight = 0
+    #定义构造方法
+    def __init__(self,n,a,w):
+        self.name = n
+        self.age = a
+        self.__weight = w
+    def speak(self):
+        print("%s 说: 我 %d 岁。" %(self.name,self.age))
+ 
+# 实例化类
+p = people('runoob',10,30)
+p.speak()
+```
+
+
 
 ```python
 class MyNumbers:
@@ -20,7 +60,39 @@ print(next(myiter))
 print(next(myiter))
 print(next(myiter))
 ```
-
+#### 继承:
+```python
+#类定义
+class people:
+    #定义基本属性
+    name = ''
+    age = 0
+    #定义私有属性,私有属性在类外部无法直接进行访问
+    __weight = 0
+    #定义构造方法
+    def __init__(self,n,a,w):
+        self.name = n
+        self.age = a
+        self.__weight = w
+    def speak(self):
+        print("%s 说: 我 %d 岁。" %(self.name,self.age))
+ 
+#单继承示例
+class student(people):
+    grade = ''
+    def __init__(self,n,a,w,g):
+        #调用父类的构函
+        people.__init__(self,n,a,w)
+        self.grade = g
+    #覆写父类的方法
+    def speak(self):
+        print("%s 说: 我 %d 岁了，我在读 %d 年级"%(self.name,self.age,self.grade))
+ 
+ 
+ 
+s = student('ken',10,60,3)
+s.speak()
+```
 
 ## 模块
 `import modulename`
