@@ -106,3 +106,33 @@ for x in it:
     print (x, end=" ")
 
 ```
+
+## 输入和输出
+- 表达式语句
+- print()函数
+- 美化使用str.format()函数来格式化输出值--较新的
+- 旧的%格式化.
+- f-string:字面量格式化字符串
+- 将输出值转化成字符串
+  - `str()` 用户易读
+  - `rstr()` 解释器易读的表达形式
+
+```python
+>>> for x in range(1, 11):
+...     print(repr(x).rjust(2), repr(x*x).rjust(3), end=' ')
+...     # 注意前一行 'end' 的使用
+...     print(repr(x*x*x).rjust(4))
+...
+ 1   1    1
+ 2   4    8
+>>> for x in range(1, 11):
+...     print('{0:2d} {1:3d} {2:4d}'.format(x, x*x, x*x*x))
+...
+ 1   1    1
+ 2   4    8
+ 3   9   27
+
+```
+
+str.format: 较新的函数
+旧式: `print('常量 PI 的值近似为：%5.3f。' % math.pi)`
