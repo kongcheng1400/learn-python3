@@ -13,3 +13,6 @@
 >>> shutil.copyfile('data.db', 'archive.db')
 >>> shutil.move('/build/executables', 'installdir')
 ```
+
+## matplotlib
+![plot](plot_struct.png)
