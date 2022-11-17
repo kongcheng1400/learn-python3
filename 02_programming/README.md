@@ -114,6 +114,7 @@ for x in it:
 - 旧的%格式化.
 - f-string:字面量格式化字符串
 - 将输出值转化成字符串
+- 内建format(value, 'format_spec')函数.
   - `str()` 用户易读
   - `rstr()` 解释器易读的表达形式
 
@@ -136,3 +137,25 @@ for x in it:
 
 str.format: 较新的函数
 旧式: `print('常量 PI 的值近似为：%5.3f。' % math.pi)`
+
+### format_spec 格式规格迷你语言
+format_spec     ::=  [[fill]align][sign][z][#][0][width][grouping_option][.precision][type]
+fill            ::=  <any character>
+align           ::=  "<" | ">" | "=" | "^"
+sign            ::=  "+" | "-" | " "
+width           ::=  digit+
+grouping_option ::=  "_" | ","
+precision       ::=  digit+
+type            ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "s" | "x" | "X" | "%"
+
+```python
+format(14, '#b'), format(14, 'b')
+"int: {0:d};  hex: {0:#x};  oct: {0:#o};  bin: {0:#b}".format(42)
+#'int: 42;  hex: 0x2a;  oct: 0o52;  bin: 0b101010'
+'{:,}'.format(1234567890)
+#'1,234,567,890'
+'{:_}'.format(1234567890)
+#'1_234_567_890'
+'Correct answers: {:.2%}'.format(2/3)
+#'Correct answers: 66.67%'
+```

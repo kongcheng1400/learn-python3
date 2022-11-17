@@ -1,8 +1,15 @@
 # 基本数据类型
-不可变: Number(int, float, complex,bool), String, Tuple
-可变: List, Dictionary,Set
 
-- 数字类型是不允许改变的，改变之后重新分配存储空间，可以使用del删除引用。
+内置的标准类型:
+- number(int, float, complex)
+  - bool是int的子类，唯一实例就是False, True
+- 序列
+- map
+- class
+- instance
+- except(异常)
+
+容器类型: lsit, set, tuple, dict
 
 list: [e,e,e]
 tuple: (e,e,e)
@@ -36,6 +43,9 @@ print (str + "TEST") # 连接字符串
 - 使用`r`来raw string: `print(r'Ru\noob'')`
 - 单引号与双引号 具有同样的效果
 - `*` 多次输出, `+` 连接
+
+## string模块中定义的常量
+
 
 ## 序列
 - 6个内置的序列类型，最常见的是列表和元组.
@@ -305,3 +315,90 @@ in, not in用来测试是否在制定序列中.
 - 
 
 
+## python 解释器内置函数
+- abs
+- aiter()和anext()
+```python
+import asyncio
+async def numbers(nums):
+    for i in range(nums):
+        yield i
+        await asyncio.sleep(0.5)
+# 隐式使用
+[i async for i in numbers(10) if i % 2 == 0]
+# 显式使用
+[i async for i in aiter(numbers(10)) if i % 2 == 0]
+# [0, 2, 4, 6, 8]
+a = aiter(numbers(10))
+dir(a)
+```
+
+- any(iterable,/)
+- bin(x, /), bool(x=Flase/)
+- bool(x = False, /)
+- breakpoint(*args, **kws)
+- class bytearray(): bytes数组,可变序列; class bytes():bytes对象，不可变序列.
+- callable()
+- chr(i, /), ord()的逆函数
+- @classmethod: 把一个方法封装成类方法, 函数的decorator
+- class complex(real=0, imag=0), class complex(string, /): 注意字符串转换时+_不能有空格
+- delattr(object, name, /) setattr()
+- class dict(**kwarg), class dict(mapping, /, **kwarg), class dict(iterable, /, **kwarg)
+- dir(), dir(object, /)
+- divmod(a, b, /), 等效于(a//b, a%b)
+- enumerate(iterable, start = 0)
+```python
+seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+list(enumerate(seasons))
+#[(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
+list(enumerate(seasons, start=1))
+#[(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]
+
+# 等价于:
+def enumerate(sequence, start=0):
+    n = start
+    for elem in sequence:
+        yield n, elem
+        n += 1
+
+```
+
+- eval(expression, /, globals=None, locals=None)
+- exec(object, /, globals=None, locals=None, /, *, closure=None)
+
+- filter(function, iterable, /) 相当于: (item for item in iterable if function(item)) 生成器表达式
+```python
+list(filter(lambda n: n > 2, list(range(5))))
+>>> numbers = [-2, -1, 0, 1, 2]
+
+>>> # Using a lambda function
+>>> positive_numbers = filter(lambda n: n > 0, numbers)
+>>> positive_numbers
+<filter object at 0x7f3632683610>
+>>> list(positive_numbers)
+[1, 2]
+
+>>> # Using a user-defined function
+>>> def is_positive(n):
+...     return n > 0
+...
+>>> list(filter(is_positive, numbers))
+[1, 2]
+
+```
+
+- class float(x=0.0, /)
+```python
+float('+1.23')
+1.23
+float('   -12345\n')
+-12345.0
+float('1e-003')
+0.001
+float('+1E6')
+1000000.0
+float('-Infinity')
+-inf
+```
+
+- format(value, format_spec=' ')
