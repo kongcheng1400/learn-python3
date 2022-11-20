@@ -109,14 +109,27 @@ for x in it:
 
 ## 输入和输出
 - 表达式语句
-- print()函数
-- 美化使用str.format()函数来格式化输出值--较新的
-- 旧的%格式化.
-- f-string:字面量格式化字符串
-- 将输出值转化成字符串
+- 内置print()函数,f string, str.format(), printf风格
 - 内建format(value, 'format_spec')函数.
   - `str()` 用户易读
   - `rstr()` 解释器易读的表达形式
+
+### 格式化
+两种: 一种是str.format()和自定义字符串格式化， 一种是基于C printf样式的格式化
+
+#### str.format(*args, **kwargs)
+
+
+```
+replacement_field ::=  "{" [field_name] ["!" conversion] [":" format_spec] "}"
+field_name        ::=  arg_name ("." attribute_name | "[" element_index "]")*
+arg_name          ::=  [identifier | digit+]
+attribute_name    ::=  identifier
+element_index     ::=  digit+ | index_string
+index_string      ::=  <any source character except "]"> +
+conversion        ::=  "r" | "s" | "a"
+format_spec       ::=  <described in the next section>
+```
 
 ```python
 >>> for x in range(1, 11):
@@ -150,6 +163,20 @@ type            ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" |
 
 ```python
 format(14, '#b'), format(14, 'b')
+# ('0b1110', '1110')
+# fstring
+f'{14:#b}', f'{14:b}'
+# ('0b1110', '1110')
+format(14, '#010x')
+#'0x0000000e'
+format(14, '#010_x')
+#'0x000_000e'
+format(14, '#10x')
+#'       0xe'
+format(3.123344E+1, '#5.2f')
+#'31.23'
+
+
 "int: {0:d};  hex: {0:#x};  oct: {0:#o};  bin: {0:#b}".format(42)
 #'int: 42;  hex: 0x2a;  oct: 0o52;  bin: 0b101010'
 '{:,}'.format(1234567890)
@@ -158,4 +185,34 @@ format(14, '#b'), format(14, 'b')
 #'1_234_567_890'
 'Correct answers: {:.2%}'.format(2/3)
 #'Correct answers: 66.67%'
+```
+
+```python
+'%#x' % 255, '%x' % 255, '%X' % 255
+('0xff', 'ff', 'FF')
+format(255, '#x'), format(255, 'x'), format(255, 'X')
+('0xff', 'ff', 'FF')
+f'{255:#x}', f'{255:x}', f'{255:X}'
+('0xff', 'ff', 'FF')
+```
+
+#### f-string. 
+```
+f_string          ::=  (literal_char | "{{" | "}}" | replacement_field)*
+replacement_field ::=  "{" f_expression ["="] ["!" conversion] [":" format_spec] "}"
+f_expression      ::=  (conditional_expression | "*" or_expr)
+                         ("," conditional_expression | "," "*" or_expr)* [","]
+                       | yield_expression
+conversion        ::=  "s" | "r" | "a"
+format_spec       ::=  (literal_char | NULL | replacement_field)*
+literal_char      ::=  <any code point except "{", "}" or NULL>
+```
+
+#### 旧式风格 printf %操作符
+`format % values`: %字符串的格式化或者插值运算符.
+values: 如果format只有一个参数，则values可以为一个非元组对象。否则必须为一个元组，或者单独映射对象(例如字典)
+```python
+print('%(language)s has %(number)03d quote types.' %
+      {'language': "Python", "number": 2})
+# Python has 002 quote types.
 ```

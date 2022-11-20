@@ -3,7 +3,8 @@
 内置的标准类型:
 - number(int, float, complex)
   - bool是int的子类，唯一实例就是False, True
-- 序列
+- 迭代器类型/容器类型.
+- 序列:list, tuple, range
 - map
 - class
 - instance
@@ -11,6 +12,40 @@
 
 容器类型: lsit, set, tuple, dict
 
+## int类型的附加方法.
+int.bit_length()
+int.bit_count()
+int.to_bytes()
+int.from_bytes(bytes, byteorder='big', *, signed=False)
+int.as_integer_ratio()
+
+## float类型的附加方法
+float.as_integer_ratio()
+float.is_integer()
+
+## 迭代器类型，迭代协议，容器
+container.__iter__()返回迭代器对象.
+迭代器协议: iterator.__iter__(), iterator.__next__() 支持这两个方法.
+迭代完成则返回StopIteration异常.
+
+## 生成器类型--实现迭代器协议的便捷方式.
+
+## 序列及通用序列操作
+- 三种基本序列: list, tuple, range.
+- 基本运算
+  - `x in s`
+  - `x not in s`
+  - `s + t`
+  - `s[i:j:k]`切片
+  - len(s)
+  - min(s)
+  - max(s)
+### 可变序列 操作
+- s[i] = x
+
+## slice 对象
+- range返回slice对象
+- 扩展索引语法: a[start:stop:step]或者a[start:stop, i]
 list: [e,e,e]
 tuple: (e,e,e)
 set: {}
@@ -27,31 +62,15 @@ isinstance(a, int)
 - 直接赋值对象才被创建
 - 使用`del`来删除
 
-## string
-
-```
-str = 'Runoob'
-print (str)          # 输出字符串
-print (str[0:-1])    # 输出第一个到倒数第二个的所有字符
-print (str[0])       # 输出字符串第一个字符
-print (str[2:5])     # 输出从第三个开始到第五个的字符
-print (str[2:])      # 输出从第三个开始的后的所有字符
-print (str * 2)      # 输出字符串两次，也可以写成 print (2 * str)
-print (str + "TEST") # 连接字符串
-```
-
-- 使用`r`来raw string: `print(r'Ru\noob'')`
-- 单引号与双引号 具有同样的效果
-- `*` 多次输出, `+` 连接
-
-## string模块中定义的常量
-
-
-## 序列
-- 6个内置的序列类型，最常见的是列表和元组.
 
 ## List
+- class list([iterable])
 - 序列是python中最基本的数据结构
+### 创建列表
+- 空列表[]
+- 方括号，逗号分隔[a],[a,b,c]
+- 列表推导式:[x for x in iterable]
+- 构造器: list(), list(iterable)
 
 ### 特点
 - 方括号之间`[]`逗号分隔的元素列表.
@@ -106,7 +125,10 @@ if __name__ == "__main__":
 - 方法: `lsit.append(obj), list.count(obj), list.extend(seq), list.index(obj), list.insert(index, obj)`
 
 ## tuple
+通常用于储存异构数据的多项集，例如enumerate()内置函数所产生的2元组
+
 ### 特点
+
 - 元素不能修改
 - 使用逗号分隔元素
 - 小括号创建
@@ -128,22 +150,88 @@ print (tuple + tinytuple) # 连接元组
 
 ```
 
-### set
+## range对象
+- 不可变的数字序列，通常用在for循环中指定循环次数
+- range对象占用固定数量的内存，只保存了start, stop, step.
+
+## str 文本序列类型
+
+```
+str = 'Runoob'
+print (str)          # 输出字符串
+print (str[0:-1])    # 输出第一个到倒数第二个的所有字符
+print (str[0])       # 输出字符串第一个字符
+print (str[2:5])     # 输出从第三个开始到第五个的字符
+print (str[2:])      # 输出从第三个开始的后的所有字符
+print (str * 2)      # 输出字符串两次，也可以写成 print (2 * str)
+print (str + "TEST") # 连接字符串
+```
+
+- 使用`r`来raw string: `print(r'Ru\noob'')`
+- 单引号与双引号 具有同样的效果
+- `*` 多次输出, `+` 连接
+
+### 常识
+- 字符串运算符: `+*[] in not in r/R %`
+- 字符串格式化: %
+- 辅助格式化: `str.format()`, 格式化符号:`*-, +, <sp>, 0, m.n`
+- 三个引号: 多行字符串. 常用于html, SQL块
+- python 3.6中引入了f字符串，类似于JS中的字符串模板.
+
+### 字符串序列方法
+- `str.format()`
+- `str.index(sub[, start[, end]])`
+- `str.isalnum(), str.isalpha(), str.isascii(), str.isdecimal(), str.isdigital(), str.isidentifier()`
+- `str.islower()` `str.isnumeric()` `str.isprintable()` `str.isspace()` `str.istitle()`
+
+## 二进制序列类型--- bytes, bytearray, memoryview
+`class bytes([source[, encoding[, errors]]])`
+bytes:字面值: b''或者
+bytes 字面值中只允许 ASCII 字符（无论源代码声明的编码为何）。 任何超出 127 的二进制值必须使用相应的转义序列形式加入 bytes 字面值。
+但 bytes 对象的行为实际上更像是不可变的整数序列，序列中的每个值的大小被限制为 0 <= x < 256 (如果违反此限制将引发 ValueError)
+其他创建方式:
+bytes(10)
+### bytes methods
+- classmethod formhex(string)
+```python
+bytes.fromhex('2Ef0 F1f2  ') #忽略空格
+#b'.\xf0\xf1\xf2'
+```
+- hex([sep[, bytes_per_sep]])
+```python
+b'\xf0\xf1\xf2'.hex()
+#'f0f1f2'
+value = b'\xf0\xf1\xf2'
+value.hex('-')
+#'f0-f1-f2'
+value.hex('_', 2)
+#'f0_f1f2'
+b'UUDDLRLRAB'.hex(' ', -4)
+#'55554444 4c524c52 4142'
+```
+
+### bytearray对象
+bytearray对象是bytes对象的可变对应物
+没有专属的
+
+
+## set
 - 使用大括号,或者set()函数
-- 无序，唯一.
+- 无序，唯一, 无固定位置
+- 不支持索引，切片
 
 创建
-```
-parame = {value01,value02,...}
-或者
-set(value)
+1. 字面量逗号分隔大括号`{value, value2, ...}`
+2. 集合推导式: `{c for c in 'abracadabra' if c not in 'abc'}`
+3. 使用类型构造器: `set(),   set('foobar')` 
 
-```
+操作:
+1. 集合类操作
+2. 元素操作: add(elem), remove(elem)
 
 examples:
-```
+```python
 sites = {'Google', 'Taobao', 'Runoob', 'Facebook', 'Zhihu', 'Baidu'}
-
 print(sites)   # 输出集合，重复的元素被自动去掉
 
 # 成员测试
@@ -162,9 +250,18 @@ print(a & b)     # a 和 b 的交集
 print(a ^ b)     # a 和 b 中不同时存在的元素
 ```
 
-### Dictionary
-使用{}创建的key:value pair
-或者使用dict()
+## Dictionary
+calss dict(**kwargs)
+class dict(mapping, **kwargs)
+class dict(iterable, **kwargs)
+
+创建：
+1. key:value 逗号分隔，
+2. 字典推导式: `{x: x ** 2 for x in range(10)}`
+3. 类型构造器: `dict()`, `dict([('foo',100), ('bar', 200)])`
+
+
+
 ```
 #!/usr/bin/python3
 
@@ -183,14 +280,19 @@ print (tinydict.values()) # 输出所有值
 
 构造函数:dict(d)
 d可以是元素的列表，集合，或者元组.
+```python
+a = dict(one=1, two=2, three=3)
+b = {'one': 1, 'two': 2, 'three': 3}
+c = dict(zip(['one', 'two', 'three'], [1, 2, 3]))
+d = dict([('two', 2), ('one', 1), ('three', 3)])
+e = dict({'three': 3, 'one': 1, 'two': 2})
+f = dict({'one': 1, 'three': 3}, two=2)
+a == b == c == d == e == f
+#True
 ```
->>> dict([('Runoob', 1), ('Google', 2), ('Taobao', 3)])
-{'Runoob': 1, 'Google': 2, 'Taobao': 3}
->>> {x: x**2 for x in (2, 4, 6)}
-{2: 4, 4: 16, 6: 36}
->>> dict(Runoob=1, Google=2, Taobao=3)
-{'Runoob': 1, 'Google': 2, 'Taobao': 3}
-```
+
+### 字典视图对象
+dict.key(), dict.values(), dict.items()
 
 ### 类型转换
 - int(x)
@@ -302,14 +404,6 @@ in, not in用来测试是否在制定序列中.
 
 ### 数学常量
 
-## String
-### 常识
-- 使用[]来截取字符串.
-- 字符串运算符: `+*[] in not in r/R %`
-- 字符串格式化: %
-- 辅助格式化: `str.format()`, 格式化符号:`*-, +, <sp>, 0, m.n`
-- 三个引号: 多行字符串. 常用于html, SQL块
-- python 3.6中引入了f字符串，类似于JS中的字符串模板.
 
 ### 内建函数
 - 
@@ -317,7 +411,11 @@ in, not in用来测试是否在制定序列中.
 
 ## python 解释器内置函数
 - abs
-- aiter()和anext()
+- aiter(async_iterable,/)和anext()
+aiter没有两个参数的版本
+- iter(object, /)
+- iter(object, sentinel, /)
+
 ```python
 import asyncio
 async def numbers(nums):
@@ -400,5 +498,44 @@ float('+1E6')
 float('-Infinity')
 -inf
 ```
+- frozenset(iterable=set(), /)
+- globals()
+- hasattr(object, name, /)
+- hash(object, /)
+- help()
+- hex(x, /), oct(x, /)
+- input()
+- input(prompt, /)
+- class int(x, /, base=10)
+- len
+- class list(iterable, /)
 
-- format(value, format_spec=' ')
+- map(function, iterable, /, * iterables)
+
+- max(iterable, /, *, key=None) , min
+
+- open(file, mode='r',)
+-print(*objects, sep=' ', end=)
+- slice(stop, /), slice(start, stop, step=1, /): 返回slice对象.
+- sorted(iterable, /, *, key=Node, reverse=False), key比较函数.
+- sum(iterable, /, start=0) 
+- super(type, object_or_type=Node, /)
+- tuple
+- tuple(iterable, /)
+- vars()
+
+
+- zip(*iterables, strict=False)
+zip:返回元组的迭代器
+```python
+for item in zip([1, 2, 3], ['sugar', 'spice', 'everything nice']):
+    print(item)
+
+(1, 'sugar')
+(2, 'spice')
+(3, 'everything nice')
+```
+
+## 内置常量
+- False, True, Non, NotImplemented, Ellipsis, 
+- __debug__
