@@ -44,3 +44,36 @@ deque(['Michael', 'Terry', 'Graham'])
 >>> [vec1[i]*vec2[i] for i in range(len(vec1))]
 [8, 12, -54]
 ```
+
+### 生成器表达式
+```python
+line_list = ['  line 1\n', 'line 2  \n', ' \n', '']
+
+# Generator expression -- returns iterator
+stripped_iter = (line.strip() for line in line_list)
+
+# List comprehension -- returns list
+stripped_list = [line.strip() for line in line_list]
+```
+
+```
+( expression for expr in sequence1
+             if condition1
+             for expr2 in sequence2
+             if condition2
+             for expr3 in sequence3
+             ...
+             if condition3
+             for exprN in sequenceN
+             if conditionN )
+```
+
+```python
+
+seq1 = 'abc'
+seq2 = (1, 2, 3)
+[(x, y) for x in seq1 for y in seq2]  
+[('a', 1), ('a', 2), ('a', 3),
+ ('b', 1), ('b', 2), ('b', 3),
+ ('c', 1), ('c', 2), ('c', 3)]
+```
