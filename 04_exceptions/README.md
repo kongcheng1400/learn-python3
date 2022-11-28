@@ -79,6 +79,13 @@ Traceback (most recent call last):
 __main__.MyError: 'oops!'
 ```
 
+#### 最简单的自定义异常:
+```python
+class SimplestError(Exception): pass
+raise SimplestError('simplest error from %s at %d' % ('testdemo', 1))
+#SimplestError: simplest error from testdemo at 1
+```
+
 ### with
 - with封装了try...except...finally
 - 在处理文件对象时使用with关键字时一种很好的做法

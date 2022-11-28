@@ -385,6 +385,17 @@ or
 可以利用range区间，tuple, list, dict, set等数据类型，快速生一个满足制定需求的tuple.
 
 
+## bytes, bytearray, memoryview
+1. bytes 单个字节构成的不可变序列. 由于许多主要二进制协议都基于ASCII文本编码.
+2. 字面值只允许0-127, 超过需要使用对应的转义序列
+
+### 创建bytes
+1. 字面量(b前缀)
+  - 单引号b' '
+  - 双引号b" "
+  - 三重引号
+2. 指定长度的零值填充: bytes(10)
+3. 整数组成的可迭代对象: bytes(range(20))
 
 ## 运算符
 - 成员运算符 in , not in
