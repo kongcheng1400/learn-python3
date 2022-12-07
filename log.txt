@@ -1,0 +1,32 @@
+2022-12-05 17:45:05,201 1
+2022-12-05 17:45:05,244 +0,"No error"
+2022-12-05 17:45:05,287 +0,"No error"
+2022-12-05 17:45:05,288 instrumentKeysight Technologies,N9020B,MY62153137,A.33.03 checked successful on 10.86.134.71 5025
+2022-12-05 17:45:05,304 Server loop running in thread:Thread-1 (serve_forever)
+2022-12-05 17:45:10,305 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>]
+2022-12-05 17:45:15,306 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>]
+2022-12-05 17:45:17,140 this connection started:('127.0.0.1', 54941)
+2022-12-05 17:45:17,286 connection to N9020 established with 10.86.134.71
+2022-12-05 17:45:17,372 instrument identified as: Keysight Technologies,N9020B,MY62153137,A.33.03, and status: +0,"No error"
+2022-12-05 17:45:20,320 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>, <Thread(Thread-2 (process_request_thread), started 15768)>, <InstrumentHandler(N9020, started daemon 53172)>, <Thread(sub-send-thread, started daemon 25344)>, <Thread(sub-receive-thread, started daemon 31600)>]
+2022-12-05 17:45:21,408 from island('127.0.0.1', 54941):SYST:ERR?
+
+2022-12-05 17:45:21,536 from island cmd:SYST:ERR?
+
+2022-12-05 17:45:21,723 responded with:+0,"No error"
+2022-12-05 17:45:21,849 to Island responded with data:b'+0,"No error"\n'
+2022-12-05 17:45:25,423 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>, <Thread(Thread-2 (process_request_thread), started 15768)>, <InstrumentHandler(N9020, started daemon 53172)>, <Thread(sub-send-thread, started daemon 25344)>, <Thread(sub-receive-thread, started daemon 31600)>]
+2022-12-05 17:45:26,983 from island('127.0.0.1', 54941):'*WAI\n*OPC?
+
+2022-12-05 17:45:27,063 from island cmd:'*WAI\n*OPC?
+
+2022-12-05 17:45:30,477 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>, <Thread(Thread-2 (process_request_thread), started 15768)>, <InstrumentHandler(N9020, started daemon 53172)>, <Thread(sub-send-thread, started daemon 25344)>, <Thread(sub-receive-thread, started daemon 31600)>]
+2022-12-05 17:45:35,646 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>, <Thread(Thread-2 (process_request_thread), started 15768)>, <InstrumentHandler(N9020, started daemon 53172)>, <Thread(sub-send-thread, started daemon 25344)>, <Thread(sub-receive-thread, started daemon 31600)>]
+2022-12-05 17:45:38,396 cant create the connection to insturment N9020
+2022-12-05 17:45:38,427 this connection finished:('127.0.0.1', 54941), and close the instrument
+2022-12-05 17:45:38,490 connection from ('127.0.0.1', 54941) closed and exit<Thread(sub-send-thread, started daemon 25344)>
+2022-12-05 17:45:38,490 connection ('127.0.0.1', 54941) invalid with error [WinError 10038] An operation was attempted on something that is not a socket and exit
+2022-12-05 17:45:40,662 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>]
+2022-12-05 17:45:45,662 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>]
+2022-12-05 17:45:50,664 [<_MainThread(MainThread, started 25100)>, <Thread(Thread-1 (serve_forever), started daemon 31088)>]
+2022-12-05 17:45:55,503 Ctrl-C pressed. Shutting down...

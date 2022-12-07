@@ -1,0 +1,23 @@
+2022-12-03 17:59:37,605 Server loop running in thread:Thread-1 (serve_forever)
+2022-12-03 17:59:55,735 this connection started:('127.0.0.1', 57267)
+2022-12-03 17:59:57,735 data received from ('127.0.0.1', 57267):Hello World  cnt 0
+2022-12-03 17:59:57,736 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 0'
+2022-12-03 17:59:59,738 data received from ('127.0.0.1', 57267):Hello World  cnt 1
+2022-12-03 17:59:59,738 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 1'
+2022-12-03 18:00:01,741 data received from ('127.0.0.1', 57267):Hello World  cnt 2
+2022-12-03 18:00:01,741 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 2'
+2022-12-03 18:00:03,743 data received from ('127.0.0.1', 57267):Hello World  cnt 3
+2022-12-03 18:00:03,744 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 3'
+2022-12-03 18:00:05,746 data received from ('127.0.0.1', 57267):Hello World  cnt 4
+2022-12-03 18:00:05,746 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 4'
+2022-12-03 18:00:07,749 data received from ('127.0.0.1', 57267):Hello World  cnt 5
+2022-12-03 18:00:07,750 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 5'
+2022-12-03 18:00:09,752 data received from ('127.0.0.1', 57267):Hello World  cnt 6
+2022-12-03 18:00:09,752 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 6'
+2022-12-03 18:00:11,755 data received from ('127.0.0.1', 57267):Hello World  cnt 7
+2022-12-03 18:00:11,756 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 7'
+2022-12-03 18:00:12,183 Ctrl-C pressed. Shutting down...
+2022-12-03 18:00:13,758 data received from ('127.0.0.1', 57267):Hello World  cnt 8
+2022-12-03 18:00:13,759 responded with data:b'Thread-2 (process_request_thread): Hello World  cnt 8'
+2022-12-03 18:00:13,759 server is closing all connections
+2022-12-03 18:00:13,759 this connection finished:('127.0.0.1', 57267)

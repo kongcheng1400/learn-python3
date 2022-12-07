@@ -4,7 +4,7 @@
 - number(int, float, complex)
   - bool是int的子类，唯一实例就是False, True
 - 迭代器类型/容器类型.
-- 序列:list, tuple, range
+- 序列:list, tuple, range, 附加的二进制类型和文本字符串(str, bytes, bytearray).
 - map
 - class
 - instance
@@ -23,12 +23,6 @@ int.as_integer_ratio()
 float.as_integer_ratio()
 float.is_integer()
 
-## 迭代器类型，迭代协议，容器
-container.__iter__()返回迭代器对象.
-迭代器协议: iterator.__iter__(), iterator.__next__() 支持这两个方法.
-迭代完成则返回StopIteration异常.
-
-## 生成器类型--实现迭代器协议的便捷方式.
 
 ## 序列及通用序列操作
 - 三种基本序列: list, tuple, range.
@@ -37,11 +31,24 @@ container.__iter__()返回迭代器对象.
   - `x not in s`
   - `s + t`
   - `s[i:j:k]`切片
+  - s[i]
+  - s.index(x)
+  - s.count(x)
+  - s * n, n * s
+
   - len(s)
   - min(s)
   - max(s)
 ### 可变序列 操作
+可变序列: 列表
+不可变: tuple, str
 - s[i] = x
+- s[i:J] = t (t为可迭代对象)
+- del s[i:j] 等同于 s[i:j]=[]
+- s.append(x)
+- s.clear()
+- s.copy()等同于
+- s.insert(i, x), s.extend(t), s.pop(), s.remove(x), s.reverse
 
 ## slice 对象
 - range返回slice对象
@@ -155,6 +162,14 @@ print (tuple + tinytuple) # 连接元组
 - range对象占用固定数量的内存，只保存了start, stop, step.
 
 ## str 文本序列类型
+由unicode码位构成的不可变序列: 字面值写法:
+- 使用`r`来raw string: `print(r'Ru\noob'')`
+- 单引号与双引号 具有同样的效果
+- `*` 多次输出, `+` 连接
+- 不存在单个字符，索引操作产生一个长度为1的字符串.
+class str(object='')
+class str(object=b'', encoding='utr-8')
+str(b'Zoot!'): bytes对象。
 
 ```
 str = 'Runoob'
@@ -167,16 +182,24 @@ print (str * 2)      # 输出字符串两次，也可以写成 print (2 * str)
 print (str + "TEST") # 连接字符串
 ```
 
-- 使用`r`来raw string: `print(r'Ru\noob'')`
-- 单引号与双引号 具有同样的效果
-- `*` 多次输出, `+` 连接
+
 
 ### 常识
 - 字符串运算符: `+*[] in not in r/R %`
-- 字符串格式化: %
+- 字符串格式化: printf风格， str.format()风格， f string(模板字符串风格). printf风格
 - 辅助格式化: `str.format()`, 格式化符号:`*-, +, <sp>, 0, m.n`
 - 三个引号: 多行字符串. 常用于html, SQL块
 - python 3.6中引入了f字符串，类似于JS中的字符串模板.
+
+### %运算符(格式化或者插值运算符)
+format % values
+```python
+print('%(language)s has %(number)03d quote types.' %
+      {'language': "Python", "number": 2})
+#Python has 002 quote types.
+```
+%[(varname)][#,0,-, ,+][width][.precision][长度修饰]类型
+
 
 ### 字符串序列方法
 - `str.format()`

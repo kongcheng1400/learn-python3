@@ -2,6 +2,26 @@
 - 类成员通常为public, 所有成员函数都是virtual
 ## class 对象.
 类对象支持两种操作，属性引用和实例化.
+实例对象的操作: 属性引用。数据属性和方法。
+
+### 类变量和实例变量:
+这个类变量不是很明显:
+```python
+class Dog:
+    kind = 'canine'         # class variable shared by all instances
+    def __init__(self, name):
+        self.name = name    # instance variable unique to each instance
+>>> d = Dog('Fido')
+>>> e = Dog('Buddy')
+>>> d.kind                  # shared by all dogs
+'canine'
+>>> e.kind                  # shared by all dogs
+'canine'
+>>> d.name                  # unique to d
+'Fido'
+>>> e.name                  # unique to e
+'Buddy'
+```
 
 ## oop
 
@@ -68,13 +88,7 @@ print(next(myiter))
 #### 继承:
 ```python
 #类定义
-class people:
-    #定义基本属性
-    name = ''
-    age = 0
-    #定义私有属性,私有属性在类外部无法直接进行访问
-    __weight = 0
-    #定义构造方法
+class People:
     def __init__(self,n,a,w):
         self.name = n
         self.age = a
@@ -84,7 +98,6 @@ class people:
  
 #单继承示例
 class student(people):
-    grade = ''
     def __init__(self,n,a,w,g):
         #调用父类的构函
         people.__init__(self,n,a,w)
@@ -92,8 +105,6 @@ class student(people):
     #覆写父类的方法
     def speak(self):
         print("%s 说: 我 %d 岁了，我在读 %d 年级"%(self.name,self.age,self.grade))
- 
- 
  
 s = student('ken',10,60,3)
 s.speak()

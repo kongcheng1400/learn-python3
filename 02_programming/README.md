@@ -70,6 +70,7 @@ else:
 `while (flag): print('welcome!')`
 
 #### for 
+迭代完成的时候执行else.
 ```python
 for <varaible> in <sequence>:
     <statements>
@@ -78,15 +79,22 @@ else:
 ```
 
 #### range()函数
+生成序列:其他集合可用此序列构造集合.
+enumerate: enumerate(iterable, start=0): 返回一个枚举对象，其迭代器的__next__()方法返回一个元组，里面包含一个计数值()
 - range(stop)
 - range(start, stop)
 - range(start,stop, step)
 _ 
 
 ```python
->>>a = ['Google', 'Baidu', 'Runoob', 'Taobao', 'QQ']
->>> for i in range(len(a)):
-...     print(i, a[i])
+a = ['Google', 'Baidu', 'Runoob', 'Taobao', 'QQ']
+for i in range(len(a)):
+    print(i, a[i])
+seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+list(enumerate(seasons))
+#[(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
+list(enumerate(seasons, start=1))
+#[(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]
 ```
 
 #### pass
@@ -96,8 +104,16 @@ while True:
     pass
 ```
 
-## 迭代器与生成器
-迭代器的两个基本方法: `iter()`, `next()`
+## 迭代器与生成器与容器
+
+### iterable:可迭代对象.
+iterable:可迭代对象: 所有的序列类型: list, str, tuple, 和一部分非序列类型:dict, file objects, 和所有定义了__iter__(), __getitem()___方法的class. 实现了sequence 语义。
+
+- 内置函数iter(iterable)可以返回迭代器.
+- 可迭代对象可被用于for循环以及许多其他需要一个序列地方(zip(), map()), 不要自己处理迭代器对象，for会为你自动处理.
+### 迭代器iterator
+1. 两个内置函数 `iter()`, `next()`, 或者迭代器的`__next__()`方法, `__iter__()`方法
+2. 迭代器协议: 迭代器对象本身需要支持:`__next__()`方法, `__iter__()`方法
 
 ```python
 list=[1,2,3,4]
@@ -106,6 +122,15 @@ for x in it:
     print (x, end=" ")
 
 ```
+### 生成器generator
+```
+yield_atom       ::=  "(" yield_expression ")"
+yield_expression ::=  "yield" [expression_list | "from" expression]
+```
+生成器提供了实现迭代器协议的便捷方式:如果容器对象的__iter__()方法被实现为生成器，它将自动返回一个迭代器对象
+
+yield表达式只有在定义generator函数或者aynschronous generator函数时才会用到，因此只能在函数定义的内部使用.
+
 
 ## 输入和输出
 - 表达式语句
@@ -160,6 +185,8 @@ width           ::=  digit+
 grouping_option ::=  "_" | ","
 precision       ::=  digit+
 type            ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "s" | "x" | "X" | "%"
+
+### format内置函数
 
 ```python
 format(14, '#b'), format(14, 'b')
@@ -216,3 +243,19 @@ print('%(language)s has %(number)03d quote types.' %
       {'language': "Python", "number": 2})
 # Python has 002 quote types.
 ```
+
+## 函数
+- tuple形参*arguments
+- dict形参: **keywords
+- 解包参数: *从列表或者
+- /:位置形参, * 位置或者关键字, 关键字
+```
+def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
+      -----------    ----------     ----------
+        |             |                  |
+        |        Positional or keyword   |
+        |                                - Keyword only
+         -- Positional only
+```
+
+### docstring
