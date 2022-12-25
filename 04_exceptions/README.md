@@ -1,4 +1,6 @@
 # Python3 错误和异常
+BaseException, Exception 两个类.
+- 在此类的实例上调用str() , 返回参数表示. 没有参数返回空字符串. 
 
 ## try/except
 异常捕捉:

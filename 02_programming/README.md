@@ -111,7 +111,7 @@ iterable:可迭代对象: 所有的序列类型: list, str, tuple, 和一部分�
 
 - 内置函数iter(iterable)可以返回迭代器.
 - 可迭代对象可被用于for循环以及许多其他需要一个序列地方(zip(), map()), 不要自己处理迭代器对象，for会为你自动处理.
-### 迭代器iterator
+### 迭代器iterator/迭代器协议
 1. 两个内置函数 `iter()`, `next()`, 或者迭代器的`__next__()`方法, `__iter__()`方法
 2. 迭代器协议: 迭代器对象本身需要支持:`__next__()`方法, `__iter__()`方法
 
@@ -122,15 +122,39 @@ for x in it:
     print (x, end=" ")
 
 ```
+
+```python
+class Reverse:
+    """Iterator for looping over a sequence backwards."""
+    def __init__(self, data):
+        self.data = data
+        self.index = len(data)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index == 0:
+            raise StopIteration
+        self.index = self.index - 1
+        return self.data[self.index]
+```
 ### 生成器generator
 ```
 yield_atom       ::=  "(" yield_expression ")"
 yield_expression ::=  "yield" [expression_list | "from" expression]
 ```
-生成器提供了实现迭代器协议的便捷方式:如果容器对象的__iter__()方法被实现为生成器，它将自动返回一个迭代器对象
-
+1. 生成器提供了实现迭代器协议的便捷方式:如果容器对象的__iter__()方法被实现为生成器，它将自动返回一个迭代器对象
+2. 写法就像写函数. 每次在生成器上调用next()时，会从上次离开的位置恢复执行.
 yield表达式只有在定义generator函数或者aynschronous generator函数时才会用到，因此只能在函数定义的内部使用.
 
+```python
+def reverse(data):
+    for index in range(len(data)-1, -1, -1):
+        yield data[index]
+for char in reverse('golf'):
+    print(char)
+```
 
 ## 输入和输出
 - 表达式语句

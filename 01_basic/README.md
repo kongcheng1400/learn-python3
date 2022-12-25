@@ -276,12 +276,31 @@ print(a ^ b)     # a 和 b 中不同时存在的元素
 ## Dictionary
 calss dict(**kwargs)
 class dict(mapping, **kwargs)
-class dict(iterable, **kwargs)
+class dict(iterable, **kwargs)目前只有一种标准映射类型: 字典.
+
+目前只有一种标准映射类型: 字典.
+
 
 创建：
-1. key:value 逗号分隔，
+1. key:value 逗号分隔，{'jack': 4098, 'sjoerd': 4127} 
 2. 字典推导式: `{x: x ** 2 for x in range(10)}`
 3. 类型构造器: `dict()`, `dict([('foo',100), ('bar', 200)])`
+
+```python
+a = dict(one=1, two=2, three=3)
+b = {'one': 1, 'two': 2, 'three': 3}
+c = dict(zip(['one', 'two', 'three'], [1, 2, 3]))
+d = dict([('two', 2), ('one', 1), ('three', 3)])
+e = dict({'three': 3, 'one': 1, 'two': 2})
+f = dict({'one': 1, 'three': 3}, two=2)
+a == b == c == d == e == f
+```
+
+zip(*iterable, strict=False)
+=> 在多个迭代器上并行迭代，并从每个迭代器返回一个数据项组成元组(tuple)
+enumerate(iterable, start=0)
+=> 返回一个枚举对象.
+
 
 
 
@@ -316,6 +335,14 @@ a == b == c == d == e == f
 
 ### 字典视图对象
 dict.key(), dict.values(), dict.items()
+### 字典操作
+- list(d): 返回键的列表
+- len(d)
+- d[key]
+- del d[key]
+- key in d, key not in d, 
+- iter(d)
+- get(key[, default])
 
 ### 类型转换
 - int(x)
@@ -411,6 +438,17 @@ or
 ## bytes, bytearray, memoryview
 1. bytes 单个字节构成的不可变序列. 由于许多主要二进制协议都基于ASCII文本编码.
 2. 字面值只允许0-127, 超过需要使用对应的转义序列
+
+
+## GenericAlias, Union
+实现了形参化泛型
+T[X, Y, ...]: 表示由类型X,Y来参数化的类型T的GenericALias,  
+一个接受包含: float 元素的list的函数:
+```python
+def average(values: list[float]) -> float:
+    return sum(values) / len(values)
+```
+
 
 ### 创建bytes
 1. 字面量(b前缀)

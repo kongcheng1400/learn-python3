@@ -1,7 +1,0 @@
-2022-12-06 08:17:50,075 - root - INFO - Hey, this is working!
-2022-12-06 08:17:50,075 - root - INFO - test the import log_cfg
-2022-12-06 09:17:10,563 - root - INFO - Hey, this is working!
-2022-12-06 09:17:10,564 - __main__ - INFO - test the import log_cfg
-2022-12-06 09:54:44,634 - root - INFO - Hey, this is working!
-2022-12-06 09:54:44,635 - fibo - INFO - a=2000, b=11
-2022-12-06 09:54:44,635 - __main__ - INFO - in fb test.
